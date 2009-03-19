@@ -1,0 +1,8 @@
+<% include_stylesheet 'admin/application' %>
+<h1>Edit: <%= @banner.title %></h1>
+
+<% form_for(:banner, :url => "/admin/banners/update/#{params[:id]}", :html => {:multipart => true}) do %>
+ 
+<%= render :partial => 'form' %>
+
+<% end %>

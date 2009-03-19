@@ -1,0 +1,60 @@
+h1. Radiant CMS banner management tool extension
+
+Version 0.9.1
+last update 02/11/09
+
+Repurpose of Portfolio Extension
+
+A straight-forward banner management tool for Radiant CMS
+
+h1. Features
+
+Allows you to ad banners in Radiant and display on a page.
+In addition to naming the banner, providing a url, and main description, the tool also allows you to upload banners complete with drag-and-drop order sorting.
+Included is index.rxml to provide an xml feed of all banner data in the database if you need it, or individual banners using image.rxml
+
+h1. Requirements
+
+*Plugins*
+* file_column, http://www.kanthak.net/opensource/file_column/
+
+h1. How to Install
+
+Place the banner extension in vendor/extensions/
+
+Run the migration of the Banner extension
+<pre><code>
+rake radiant:extensions:banner:migrate
+rake radiant:extensions:banner:update
+</pre></code>
+
+If for some strange reason the assets in /public do not migrate:
+* Move public/stylesheets/admin/application.css into public/stylesheets/admin/
+* Move public/images/admin/icons-small into public/images/admin/
+
+h1. Notes
+
+By default, the tool picks 4 banners at random.
+To insert banners on a page, use radius tags like so:
+
+<pre><code>
+<r:banners:each [placement="header|sidebar"]>
+  <r:title>
+</r:banners:each>
+</code></pre>
+
+The placement attribute declares if the banner placed should be a header (wide) banner or a sidebar (skyscraper) banner.
+This will iterated through the banners and display the banner title.
+To show more attributes add/substitute the following:
+
+Banner ID: <code><r:id/></code><br />
+Banner URL: <code><r:url/></code><br />
+Banner Image Name: <code><r:location/></code>
+
+See the tags file <code>banner_tags.rb</code> in the app/models directory to customize.
+
+h1. TO-DO
+
+* Fix view for file_column plugin helper in draw method
+* Utilize ordering column in db so that banners can be designated in order
+* Create flash module to display banners as dissolving slideshow

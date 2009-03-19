@@ -1,0 +1,7 @@
+<% content_for :banner do %>
+  <ul>
+		<% for banner in @banner %>
+				<li><a href="<%= banner.url %>"><img src="/image/location/<%= banner.id %>/medium/<%= banner.location %>" width="158" height="90" alt="<%= banner.title %>"/></a></li>
+		<% end %>
+	</ul>
+<% end %>

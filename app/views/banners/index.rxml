@@ -1,0 +1,21 @@
+xml.instruct! :xml, :version=>"1.0"
+xml.container {
+
+  for banner in @banners
+  
+    xml.banner(:href => "/banner/#{banner.id}", :title => banner.title, :stroke => "0x444444", :itemid => banner.id) {
+        # xml.title(banner.title)
+        #     xml.url(banner.url)
+        #     xml.thumb(banner.thumb)
+        # url_for_file_column(banner.thumb, "location")
+        
+        xml.description(banner.body)
+       
+        # if banner.thumb?
+        #   xml.thumb(:url => url_for_file_column(banner, "thumb"))
+        # end
+      }
+      
+  end
+
+}
