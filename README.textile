@@ -52,7 +52,7 @@ To insert a static Ad Set on a page, use radius tags like so:
 <pre><code>
 <r:banners:each [placement="header || sidebar"]>
   <r:ads:each>
-    <r:ad/>
+    <r:ad />
   </r:ads:each>
 </r:banners:each>
 </code></pre>
@@ -63,7 +63,7 @@ To insert a Flash Slideshow rotation of the Ad Banners use these radius tags:
 <pre><code>
 <r:banners:each [placement="header || sidebar"]>
   <r:ads:each>
-    <r:slideshow/>
+    <r:slideshow />
   </r:ads:each>
 </r:banners:each>
 </code></pre>
