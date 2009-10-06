@@ -61,7 +61,7 @@ This will randomly pick an assigned Ad Set and display the Ad Banner with it's a
 
 To insert a Flash Slideshow rotation of the Ad Banners use these radius tags:
 <pre><code>
-  <r:banners:each placement="header">
+  <r:banners:each [placement="header || sidebar"]>
     <r:ads:each>
       <r:slideshow/>
     </r:ads:each>
