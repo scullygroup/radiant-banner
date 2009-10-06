@@ -48,7 +48,7 @@ config.gem 'thoughtbot-paperclip',
 
 <p>There are 2 choices for displaying an Ad Set:  Static Ad Banners, or Ad Banners rotated in a Flash Slideshow.</p>
 
-<p>Please note that portions of this code may be cutoff in by the GitHub parser.  Please read the README file for complete info.</p>
+<p>*Please note that portions of this code may be cutoff in by the GitHub parser.  Please read the README file for complete info.*</p>
 
 To insert a static Ad Set on a page, use radius tags like so:
 <pre><code>
