@@ -3,7 +3,7 @@ class CreateTables < ActiveRecord::Migration
     create_table :banner_images do |t|
       t.integer   :banner_id
       t.integer   :position
-      t.string    :placement
+      t.string    :url
       t.string    :ad_file_name
       t.string    :ad_content_type
       t.integer   :ad_file_size
@@ -14,10 +14,9 @@ class CreateTables < ActiveRecord::Migration
     
     create_table :banners do |t|
       t.string  :title
-      t.string  :company
-      t.string  :url
+      t.integer :page_id
       t.integer :active
-
+      t.string  :placement
       t.timestamps
     end
 
