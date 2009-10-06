@@ -1,60 +1,73 @@
 h1. Radiant CMS banner management tool extension
 
-Version 0.9.1
-last update 02/11/09
 
-Repurpose of Portfolio Extension
+h2. Features
 
-A straight-forward banner management tool for Radiant CMS
+* Allows you to create Ad Sets in Radiant and randomly display on a page.
+* Banner naming
+* Assign Ad Set to a page
+* Providing a click-through url
+* Upload Ad Banners to the Ad Set complete with drag-and-drop order sorting.
+* Included is index.rxml to provide an xml feed of all banner data in the database if you need it, or individual banners using image.rxml
 
-h1. Features
+h2. Requirements
 
-Allows you to ad banners in Radiant and display on a page.
-In addition to naming the banner, providing a url, and main description, the tool also allows you to upload banners complete with drag-and-drop order sorting.
-Included is index.rxml to provide an xml feed of all banner data in the database if you need it, or individual banners using image.rxml
+<p>*Imagemagick*<br />
+"http://www.imagemagick.org/script/index.php":http://www.imagemagick.org/script/index.php</p>
 
-h1. Requirements
+<p>*Gems/Plugins*<br /> 
+Paperclip, "http://github.com/thoughtbot/paperclip/tree/master":http://github.com/thoughtbot/paperclip/tree/master</p>
+Rmagick, "http://rmagick.rubyforge.org":http://rmagick.rubyforge.org
 
-*Plugins*
-* file_column, http://www.kanthak.net/opensource/file_column/
-
-h1. How to Install
+h2. How to Install
 
 Place the banner extension in vendor/extensions/
+<pre><code>
+  git://github.com/scullygroup/radiant-banner.git vendor/extensions/banners
+</code></pre>
 
 Run the migration of the Banner extension
 <pre><code>
-rake radiant:extensions:banner:migrate
-rake radiant:extensions:banner:update
+rake radiant:extensions:banners:migrate
+rake radiant:extensions:banners:update
 </pre></code>
 
-If for some strange reason the assets in /public do not migrate:
-* Move public/stylesheets/admin/application.css into public/stylesheets/admin/
-* Move public/images/admin/icons-small into public/images/admin/
+h2. Notes
 
-h1. Notes
-
-By default, the tool picks 4 banners at random.
-To insert banners on a page, use radius tags like so:
-
+Be sure to vendor Paperclip in environment.rb
 <pre><code>
-<r:banners:each [placement="header|sidebar"]>
-  <r:title>
-</r:banners:each>
+config.gem 'thoughtbot-paperclip',
+           :lib => 'paperclip',
+           :source => 'http://gems.github.com'
+</pre></code>
+
+<p>By default, the tool picks an Ad Seta and their associated Ad Banners at random, based on the page assigned.</p>
+
+<p>There are 2 choices for displaying an Ad Set:  Static Ad Banners, or Ad Banners rotated in a Flash Slideshow.
+
+To insert a static Ad Set on a page, use radius tags like so:
+<pre><code>
+  <r:banners:each [placement="header || sidebar"]>
+    <r:ads:each>
+      <r:ad/>
+    </r:ads:each>
+  </r:banners:each>
 </code></pre>
 
-The placement attribute declares if the banner placed should be a header (wide) banner or a sidebar (skyscraper) banner.
-This will iterated through the banners and display the banner title.
-To show more attributes add/substitute the following:
+This will randomly pick an assigned Ad Set and display the Ad Banner with it's associated URL.
 
-Banner ID: <code><r:id/></code><br />
-Banner URL: <code><r:url/></code><br />
-Banner Image Name: <code><r:location/></code>
+To insert a Flash Slideshow rotation of the Ad Banners use these radius tags:
+<pre><code>
+  <r:banners:each placement="header">
+    <r:ads:each>
+      <r:slideshow/>
+    </r:ads:each>
+  </r:banners:each>
+</code></pre>
+
+This will randomly pick an assigned Ad Set and will display _ALL_ the Ad Banners in that set with the associated URL for each.
+
+*NOTE:*<br/>
+The placement attribute is required and declares if the banner placed should be a header (wide) banner or a sidebar (skyscraper) banner.
 
 See the tags file <code>banner_tags.rb</code> in the app/models directory to customize.
-
-h1. TO-DO
-
-* Fix view for file_column plugin helper in draw method
-* Utilize ordering column in db so that banners can be designated in order
-* Create flash module to display banners as dissolving slideshow

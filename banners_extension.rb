@@ -1,8 +1,8 @@
 # Uncomment this if you reference any of your controllers in activate
 # require_dependency 'application'
 
-class BannerExtension < Radiant::Extension
-  version "1.0"
+class BannersExtension < Radiant::Extension
+  version "2.0"
   description "A Radiant extension that allows you to manage random banner ads"
   url "http://www.scullytown.com"
   
@@ -11,8 +11,8 @@ class BannerExtension < Radiant::Extension
     #This links to an xml file listing of all the banners, defined in the extension tags
     #map.connect 'banners', :url => '/banners', :controller => "site", :action => "show_page"
    # map.connect '', :controller => "banners", :action => "index"
-    
-    map.resources :banners
+    map.connent "/banners/:placement", :controller => :banners, :action => :index
+    #map.resources :banners
     
     map.with_options(:controller => 'admin/banners') do |banner|
       banner.banner_index           'admin/banners',             :action => 'index'
@@ -25,14 +25,14 @@ class BannerExtension < Radiant::Extension
       banner.banner_remove          'admin/banners/remove/:id',  :action => 'destroy'
     end
     
-    map.with_options(:controller => 'admin/images') do |image|
-      image.image_index           'admin/images',             :action => 'index'
-      image.image_show            'admin/images/show/:id',    :action => 'show'   
-      image.image_new             'admin/images/new',         :action => 'new'
-      image.image_create          'admin/images/create',      :action => 'create'
-      image.image_edit            'admin/images/edit/:id',    :action => 'edit'
-      image.image_update          'admin/images/update/:id',  :action => 'update'   
-      image.image_remove          'admin/images/remove/:id',  :action => 'destroy'
+    map.with_options(:controller => 'admin/banner_images') do |banner_images|
+      banner_images.banner_images_index           'admin/banner_images',             :action => 'index'
+      banner_images.banner_images_show            'admin/banner_images/show/:id',    :action => 'show'   
+      banner_images.banner_images_new             'admin/banner_images/new',         :action => 'new'
+      banner_images.banner_images_create          'admin/banner_images/create',      :action => 'create'
+      banner_images.banner_images_edit            'admin/banner_images/edit/:id',    :action => 'edit'
+      banner_images.banner_images_update          'admin/banner_images/update/:id',  :action => 'update'   
+      banner_images.banner_images_remove          'admin/banner_images/remove/:id',  :action => 'destroy'
     end
 
   end

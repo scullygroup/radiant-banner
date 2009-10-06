@@ -1,21 +1,14 @@
-xml.instruct! :xml, :version=>"1.0"
-xml.container {
-
-  for banner in @banners
-  
-    xml.banner(:href => "/banner/#{banner.id}", :title => banner.title, :stroke => "0x444444", :itemid => banner.id) {
-        # xml.title(banner.title)
-        #     xml.url(banner.url)
-        #     xml.thumb(banner.thumb)
-        # url_for_file_column(banner.thumb, "location")
-        
-        xml.description(banner.body)
-       
-        # if banner.thumb?
-        #   xml.thumb(:url => url_for_file_column(banner, "thumb"))
-        # end
-      }
-      
-  end
-
+xml.instruct! :xml, :version=>"1.0", :encoding=>"UTF-8"
+xml.banners(:shownumbers => "false", :slidedelay => "5", :transitiontime =>"1"){
+  xml.ads{
+    for banner in @banners
+      for ad in banner.banner_images
+        xml.ad(:url => ad.ad.url)
+      end
+    end
+  }
 }
+  
+  # xml.banner(:href => "/banner/#{banner.id}", :title => banner.title, :stroke => "0x444444", :itemid => banner.id) {
+  #   xml.url(ad.ad.url)
+  # }

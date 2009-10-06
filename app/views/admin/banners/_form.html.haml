@@ -1,0 +1,28 @@
+- form_for(:banner, :url => "/admin/banners/#{action}/#{params[:id]}", :html => {:multipart => true}) do |f|
+  = f.error_messages
+  %p
+    %label
+      Ad Set Title
+    = f.text_field :title, :class => 'textbox', :size => 50, :maxlength => 255
+
+  %p
+    %label
+      Select a Page for the Ad Set
+    = select(:banner, :page_id, Page.all.collect {|p| [p.title, p.id]}, {:prompt => '-- Select a Page --'})
+      
+  %p
+    %label
+      Select the position of the Ad Set:
+    = f.radio_button :placement, "header"
+    Header/Footer Banner
+    = f.radio_button :placement, "sidebar"
+    Sidebar Banner
+    
+  %p
+    %label
+      Is this an Active Banner?
+    = check_box "banner", "active", :value => 1, :checked => true
+  %p.buttons
+    = save_model_button(@banner)
+    or
+    = link_to "Cancel", {:action => :index}

@@ -1,0 +1,20 @@
+%h1
+  Remove Banner
+%p
+  Are you sure you want to
+  %strong.warning
+    permanently remove
+  the following banner?
+  
+%table#links.index{ :cellspacing => "0", :border => "0", :cellpadding => "0" }
+  %tbody
+    %tr.node.level-1
+      %td.banner
+        = image('banners/banner', :alt => 'banner-icon')
+        = h @banner.title
+        
+- form_tag do
+  %p.buttons
+    %input.button{ :type => "submit", :value => "Delete Banner" }
+    or
+    = link_to 'Cancel', banner_index_url

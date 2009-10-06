@@ -1,0 +1,52 @@
+- include_javascript 'dragdrop'
+- include_stylesheet 'admin/application'
+
+= render :partial => '/admin/banners/secondary_nav'
+
+#work
+  %h1
+    = h @banner.title
+  %p
+    %strong
+      Page Placement:
+    = Page.find(@banner.page_id).title
+  .content-links
+    %ul
+      %li
+        = link_to "#{image_tag ("admin/icons-small/edit.png", :border =>0, :title => 'Edit')}Edit", "/admin/banners/edit/#{params[:id]}"
+      %li
+        = link_to "#{image_tag ("admin/icons-small/delete.png", :border =>0, :title => 'Delete')}Delete", "/admin/banners/remove/#{params[:id]}", :confirm => "Are you sure?"
+
+.clear
+#images
+  - form_for (:banner_image, :url => '/admin/banner_images/create', :html => {:multipart => true}) do |f|
+    = error_messages_for :banner_image
+    = f.hidden_field :banner_id, :value => @banner.id
+    %p
+      %strong
+        Upload an Ad Banner
+      %br
+      = f.file_field :ad
+    %p
+      %label
+        Ad Banner URL
+      %br
+      %em
+        Use the format http;//www.google.com
+      %br
+      = f.text_field :url, :class => 'textbox', :size => 50, :maxlength => 255
+    = f.submit "Upload"
+
+  %p
+    %em
+      Arrange the thumbnails by dragging them in the order you wish.
+  %ul#image-list
+    - @banner.banner_images.each do |image|
+      %li{ :class => "position_#{image.position}", :id => "image_#{image.id}" }
+        = link_to "#{image_tag("admin/icons-small/delete.png")}", "/admin/banner_images/remove/#{image.id}", :confirm => "Are you sure?"
+        %br
+        = image_tag image.ad.url(:thumb)
+        %br
+        = image.url
+        
+= sortable_element 'image-list', :url => "/admin/banners/update_positions/#{params[:id]}", :constraint => false, :complete => visual_effect(:highlight, 'image-list')

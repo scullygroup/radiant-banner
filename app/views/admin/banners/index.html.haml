@@ -1,0 +1,17 @@
+- include_stylesheet 'admin/application'
+
+= render :partial => '/admin/banners/secondary_nav'
+
+    
+- for banner in @banners
+  %h2.content-title
+    = h banner.title
+  .content-links
+    %ul
+      %li
+        = link_to "#{image_tag ("admin/icons-small/ok.png", :border =>0, :title => 'Ads')}Ads", banner_show_url(:id => banner.id)
+      %li
+        = link_to "#{image_tag ("admin/icons-small/edit.png", :border =>0, :title => 'Edit')}Edit", banner_edit_url(:id => banner.id)
+      %li
+        = link_to "#{image_tag ("admin/icons-small/delete.png", :border =>0, :title => 'Delete')}Delete", banner_remove_url(:id => banner.id), :confirm => "Are you sure?"
+  .clear
