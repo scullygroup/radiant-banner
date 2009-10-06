@@ -50,22 +50,22 @@ config.gem 'thoughtbot-paperclip',
 
 To insert a static Ad Set on a page, use radius tags like so:
 <pre><code>
-  <r:banners:each [placement="header || sidebar"]>
-    <r:ads:each>
-      <r:ad/>
-    </r:ads:each>
-  </r:banners:each>
+<r:banners:each [placement="header || sidebar"]>
+  <r:ads:each>
+    <r:ad/>
+  </r:ads:each>
+</r:banners:each>
 </code></pre>
 
 This will randomly pick an assigned Ad Set and display the Ad Banner with it's associated URL.
 
 To insert a Flash Slideshow rotation of the Ad Banners use these radius tags:
 <pre><code>
-  <r:banners:each [placement="header || sidebar"]>
-    <r:ads:each>
-      <r:slideshow/>
-    </r:ads:each>
-  </r:banners:each>
+<r:banners:each [placement="header || sidebar"]>
+  <r:ads:each>
+    <r:slideshow/>
+  </r:ads:each>
+</r:banners:each>
 </code></pre>
 
 This will randomly pick an assigned Ad Set and will display _ALL_ the Ad Banners in that set with the associated URL for each.
