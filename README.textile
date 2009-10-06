@@ -1,8 +1,8 @@
 h1. Radiant CMS banner management tool extension
 
-<!--
-  TODO Need to modify find method to include the specified page for each ad and only pull ads assigned to that page
--->
+TODO
+* Need to modify find method to include the specified page for each ad and only pull ads assigned to that page
+* Add ability to pass URL from XML into Flash
 
 h2. Features
 
@@ -19,8 +19,8 @@ h2. Requirements
 "http://www.imagemagick.org/script/index.php":http://www.imagemagick.org/script/index.php</p>
 
 <p>*Gems/Plugins*<br /> 
-Paperclip, "http://github.com/thoughtbot/paperclip/tree/master":http://github.com/thoughtbot/paperclip/tree/master</p>
-Rmagick, "http://rmagick.rubyforge.org":http://rmagick.rubyforge.org
+Paperclip, "http://github.com/thoughtbot/paperclip/tree/master":http://github.com/thoughtbot/paperclip/tree/master<br />
+Rmagick, "http://rmagick.rubyforge.org":http://rmagick.rubyforge.org</p>
 
 h2. How to Install
 
@@ -33,7 +33,7 @@ Run the migration of the Banner extension
 <pre><code>
 rake radiant:extensions:banners:migrate
 rake radiant:extensions:banners:update
-</pre></code>
+</code></pre>
 
 h2. Notes
 
@@ -42,11 +42,11 @@ Be sure to vendor Paperclip in environment.rb
 config.gem 'thoughtbot-paperclip',
            :lib => 'paperclip',
            :source => 'http://gems.github.com'
-</pre></code>
+</code></pre>
 
-<p>By default, the tool picks an Ad Seta and their associated Ad Banners at random, based on the page assigned.</p>
+<p>By default, the tool picks an Ad Set and their associated Ad Banners at random, based on the page assigned.</p>
 
-<p>There are 2 choices for displaying an Ad Set:  Static Ad Banners, or Ad Banners rotated in a Flash Slideshow.
+<p>There are 2 choices for displaying an Ad Set:  Static Ad Banners, or Ad Banners rotated in a Flash Slideshow.</p>
 
 To insert a static Ad Set on a page, use radius tags like so:
 <pre><code>

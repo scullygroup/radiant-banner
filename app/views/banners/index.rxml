@@ -3,12 +3,11 @@ xml.banners(:shownumbers => "false", :slidedelay => "5", :transitiontime =>"1"){
   xml.ads{
     for banner in @banners
       for ad in banner.banner_images
+        xml.ad {
         xml.ad(:url => ad.ad.url)
+        xml.url(:url => ad.url)
+      }
       end
     end
   }
 }
-  
-  # xml.banner(:href => "/banner/#{banner.id}", :title => banner.title, :stroke => "0x444444", :itemid => banner.id) {
-  #   xml.url(ad.ad.url)
-  # }
