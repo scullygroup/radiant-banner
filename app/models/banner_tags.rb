@@ -12,7 +12,8 @@ module BannerTags
   tag 'banners:each' do |tag|
     @placement = tag.attr['placement']
     result = []
-    @banners = Banner.find(:all, :conditions => ["placement = ?", "#{tag.attr['placement']}"], :order => "RAND()", :limit => 1)
+    @page = Page.find_by_url("#{params[:url]}")
+    @banners = Banner.find(:all, :conditions => ["placement = ? AND page_id = ?", "#{tag.attr['placement']}", "#{@page.id}"], :order => "RAND()", :limit => 1)
     @banners.each do |banner|
       tag.locals.banner = banner
       result << tag.expand
@@ -36,7 +37,8 @@ module BannerTags
     %{<a href="#{ad.url}" target="_blank"><img src="#{ad.ad.url}" /></a>}
   end
   
-  tag 'ads:each:slideshow' do |tag|
+  tag 'slideshow' do |tag|
+    @placement = tag.attr['placement']
     %{<div id="ad_slideshow"></div>
       <script type="text/javascript" charset="utf-8">
 	      var flashvars = {

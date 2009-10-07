@@ -2,7 +2,7 @@ h1. Radiant CMS banner management tool extension
 
 TODO
 * Need to modify find method to include the specified page for each ad and only pull ads assigned to that page
-* Add ability to pass URL from XML into Flash
+* Add ability to pass URL from XML into Flash for Slideshow, currently not respecting @page.id
 
 h2. Features
 
@@ -60,17 +60,14 @@ To insert a static Ad Set on a page, use radius tags like so:
 </code></pre>
 
 This will randomly pick an assigned Ad Set and display the Ad Banner with it's associated URL.
+The iteration through each tag may seem verbose, but this allows you to access all attributes within the Banner and BannerImage models if you would like to display them on the page.
 
-To insert a Flash Slideshow rotation of the Ad Banners use these radius tags:
+To insert a Flash Slideshow rotation of the Ad Banners use this simple radius tag:
 <pre><code>
-  <r:banners:each [placement="header || sidebar"]>
-    <r:ads:each>
-      <r:slideshow />
-    </r:ads:each>
-  </r:banners:each>
+  <r:slideshow [placement="header || sidebar"] />
 </code></pre>
 
-This will randomly pick an assigned Ad Set and will display _ALL_ the Ad Banners in that set with the associated URL for each.
+This will randomly pick an assigned Ad Set and will display _ALL_ the Ad Banners in that set with the associated URL for each in a dissolving Flash slideshow.
 
 *NOTE:*<br/>
 The placement attribute is required and declares if the banner placed should be a header (wide) banner or a sidebar (skyscraper) banner.
