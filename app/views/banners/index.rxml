@@ -3,10 +3,7 @@ xml.banners(:shownumbers => "false", :slidedelay => "5", :transitiontime =>"1"){
   xml.ads{
     for banner in @banners
       for ad in banner.banner_images
-        #xml.ad {
-        xml.ad(:url => ad.ad.url)
-        #xml.url(:url => ad.url)
-      #}
+        xml.ad(:url => ad.ad.url, :click_thru => ad.url)
       end
     end
   }
