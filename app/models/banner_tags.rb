@@ -39,10 +39,16 @@ module BannerTags
   
   tag 'slideshow' do |tag|
     @placement = tag.attr['placement']
+    @path = tag.locals.page.slug
+    if @path == "/"
+      @path = ""
+    else
+      @path = "/#{@path}"
+    end
     %{<div id="ad_slideshow"></div>
       <script type="text/javascript" charset="utf-8">
 	      var flashvars = {
-	        xml_path:"/banners/#{@placement}"
+	        xml_path:"/banners/#{@placement}#{@path}"
 	      };
         var params = {
           menu: "false",

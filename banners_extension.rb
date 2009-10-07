@@ -12,6 +12,7 @@ class BannersExtension < Radiant::Extension
     #map.connect 'banners', :url => '/banners', :controller => "site", :action => "show_page"
    # map.connect '', :controller => "banners", :action => "index"
     map.connent "/banners/:placement", :controller => :banners, :action => :index
+    map.connent "/banners/:placement/:path", :controller => :banners, :action => :index
     #map.resources :banners
     
     map.with_options(:controller => 'admin/banners') do |banner|

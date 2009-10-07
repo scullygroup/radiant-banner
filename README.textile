@@ -2,7 +2,6 @@ h1. Radiant CMS banner management tool extension
 
 TODO
 * Need to modify find method to include the specified page for each ad and only pull ads assigned to that page
-* Add ability to pass URL from XML into Flash for Slideshow, currently not respecting @page.id
 
 h2. Features
 
