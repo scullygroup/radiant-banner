@@ -72,3 +72,5 @@ This will randomly pick an assigned Ad Set and will display _ALL_ the Ad Banners
 The placement attribute is required and declares if the banner placed should be a header (wide) banner or a sidebar (skyscraper) banner.
 
 See the tags file <code>banner_tags.rb</code> in the app/models directory to customize.
+
+Copyright (c) 2009 Scully Group, released under the MIT License
